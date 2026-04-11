@@ -7,6 +7,8 @@ print('Hello ' + name + " !")
 name = 42
 print ("Hello" , name,"!")
 print ("Hello " + name + "!")
+# solve
+print ("Hello " + str(name) + "!")
 
 fave_food1 = "sushi"
 fave_food2 = "pizza"
