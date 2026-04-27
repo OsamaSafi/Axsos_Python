@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+
+<body>
+    <div class="main">
+        <h1>Counter</h1>
+        <p>{{session.visible}} (visit) times</p>
+        <p>{{session.counter}} (counter) times</p>
+        <div class="actions">
+            <a href="/add_two">
+                <button class="btn btn-green">Add 2!</button>
+            </a>
+
+            <a href="/destroy_session">
+                <button class="btn btn-red">Reset</button>
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>
