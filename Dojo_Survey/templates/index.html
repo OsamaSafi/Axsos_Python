@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+
+<body>
+    <div class="main">
+        <form action="/process" method="post">
+            <div class="child">
+                <label for="name">Your name :</label>
+                <input type="text" name="name" id="name">
+            </div>
+            <div class="child">
+                <label for="location">Dojo location :</label>
+                <input type="radio" id="gaza" name="location" value="gaza">
+                <label for="gaza">Gaza</label>
+                <input type="radio" id="westbank" name="location" value="westbank">
+                <label for="westbank">West Bank</label>
+            </div>
+            <div class="child">
+                <label>Preferred Languages: </label>
+                <input type="text" name="lang" id="lang">
+            </div>
+            <label for="comment">Comment</label>
+            <br>
+            <textarea name="comment" id="comment" rows="5"></textarea>
+            <br>
+
+            <input class="submit" type="submit" value="send">
+        </form>
+    </div>
+
+</body>
+
+</html>
