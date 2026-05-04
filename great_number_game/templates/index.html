@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+
+<body>
+    <div class="main">
+        <h1>Great Number Game</h1>
+
+        {% if result %}
+        <div class="message-box">
+            {% if status == 'win' %}
+            <h2 style="padding: 50px; background-color: green; color: #fff; margin-bottom: 15px;">{{ result }}</h2>
+            {% endif %}
+
+            {% if status == 'lose' or status == 'playing' %}
+            <h2 style="padding: 50px; background-color: red; color: #fff;margin-bottom: 15px">{{ result }}</h2>
+            {% endif %}
+
+            {% if status == 'win' %}
+            <form action="/submit-winner" method="POST">
+                <input type="text" name="name" placeholder="Enter your name" required>
+                <button type="submit">Submit to Leaderboard</button>
+            </form>
+            {% elif status == 'lose' or status == 'win' %}
+            <a href="/reset"><button>Try Again</button></a>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <!-- Only show the guess form if the game is still active -->
+        {% if status != 'win' and status != 'lose' %}
+        <p>Attempts: {{ session['attempts'] }} / 5</p>
+        <form action="/compair-num" method="post">
+            <input type="number" name="number" required>
+            <input type="submit" value="Submit">
+        </form>
+        {% endif %}
+
+        <hr>
+        <h3>Leaderboard</h3>
+        <ul>
+            {% for winner in leaderboard %}
+            <li>{{ winner.name }} - {{ winner.attempts }} attempts</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+
+</html>
