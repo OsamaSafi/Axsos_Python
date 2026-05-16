@@ -1,0 +1,98 @@
+<html>
+
+<head>
+  <title>Dojo Fruit Store Assignment</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+</head>
+
+<body>
+
+  <header>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+      <div class="container d-flex justify-content-between">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+            <circle cx="12" cy="13" r="4"></circle>
+          </svg>
+          <strong>Dojo Fruit Store</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main role="main" class="bg-light py-5">
+    <div class="container">
+
+      <div class="text-center mb-5">
+        <h1 class="jumbotron-heading">All Customer Orders</h1>
+        <p class="lead text-muted">Below is the list of everyone who ordered from the Dojo Fruit Store</p>
+        <a href="/" class="btn btn-primary">Place a New Order</a>
+      </div>
+
+      {% for order in orders %}
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">👨‍💼 Customer: {{ order.first_name }} {{ order.last_name }}</h5>
+          <span class="badge badge-secondary">ID: {{ order.student_id }}</span>
+        </div>
+
+        <div class="card-body">
+          <div class="row text-center">
+
+            {% if order.strawberry > 0 %}
+            <div class="col-md-4">
+              <div class="p-2 border rounded bg-white">
+                <h6 class="text-danger">Strawberry ({{ order.strawberry }})</h6>
+                <div class="d-flex justify-content-center flex-wrap">
+                  <img src="{{ url_for('static', filename='img/strawberry.png') }}" alt="Strawberry"
+                    style="width: 40px; margin: 2px;">
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            {% if order.raspberry > 0 %}
+            <div class="col-md-4">
+              <div class="p-2 border rounded bg-white">
+                <h6 class="text-warning">Raspberry ({{ order.raspberry }})</h6>
+                <div class="d-flex justify-content-center flex-wrap">
+                  <img src="{{ url_for('static', filename='img/raspberry.png') }}" alt="Raspberry"
+                    style="width: 40px; margin: 2px;">
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            {% if order.apple > 0 %}
+            <div class="col-md-4">
+              <div class="p-2 border rounded bg-white">
+                <h6 class="text-success">Apple ({{ order.apple }})</h6>
+                <div class="d-flex justify-content-center flex-wrap">
+                  <img src="{{ url_for('static', filename='img/apple.png') }}" alt="Apple"
+                    style="width: 40px; margin: 2px;">
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="alert alert-info text-center" role="alert">
+        No orders placed yet!
+      </div>
+      {% endfor %}
+
+    </div>
+  </main>
+
+</body>
+
+</html>
