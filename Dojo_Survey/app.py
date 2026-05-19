@@ -14,7 +14,7 @@ def process():
     session['location'] = request.form['location']
     session['lang'] = request.form['lang']
     session['comment'] = request.form['comment']
-    return redirect('/result')
+    return render_template('result.html')
 
 @app.route('/result')
 def result():
